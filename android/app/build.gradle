@@ -118,4 +118,5 @@ dependencies {
     }
 }
 
-aplly from file("../../node_modules/@react-native-vector-icons/fonts.gradle")
+aplly from: file("../../node_modules/react-native-vector-icons/fonts.gradle")
+aplly from: file("../../node_module/react-native-")
