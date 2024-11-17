@@ -16,11 +16,11 @@ export default function Agradecimento() {
 
         
         <View style={styles.legendContainer}>
-          <LegendaRelatorio color="#FF5733" texto="Vermelho" />
-          <LegendaRelatorio color="#33FF57" texto="Verde" />
-          <LegendaRelatorio color="#3357FF" texto="Azul" />
-          <LegendaRelatorio color="#FF33A1" texto="Rosa" />
-          <LegendaRelatorio color="#FFFF33" texto="Amarelo" />
+          <LegendaRelatorio color="#25BC22" texto="Excelente" />
+          <LegendaRelatorio color="#37BD6D" texto="Bom" />
+          <LegendaRelatorio color="#FFC632" texto="Neutro" />
+          <LegendaRelatorio color="#FF360A" texto="Ruim" />
+          <LegendaRelatorio color="#D71616" texto="Péssimo" />
         </View>
       </View>
     </ScrollView>
