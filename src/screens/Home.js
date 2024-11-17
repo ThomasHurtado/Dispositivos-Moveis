@@ -4,11 +4,10 @@ import Button from '../components/Button'
 import CardResearch from '../components/CardResearch'
 import { useState, useRef } from 'react'
 import { createDrawerNavigator, DrawerContentScrollView, DrawerItemList, DrawerItem } from '@react-navigation/drawer'
-import { NavigationIndependentTree, useNavigation } from '@react-navigation/native'
+import { useNavigation } from '@react-navigation/native'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 
-function Home() {
-	navegation = useNavigation()
+function Home(props) {
 	const [search, setSearch] = useState('')
 
 	const research = [
@@ -48,7 +47,7 @@ function Home() {
 	function goToReseach() {}
 
 	function newResearch() {
-		navegation.navigate('')
+		props.navigation.navigate('CreateResearch')
 	}
 
 	return (
@@ -68,7 +67,7 @@ function Home() {
 
 function CustomDrawerContent(props) {
 	function exit() {
-		props.navigation.navigate('Login')
+		props.navigation.popToTop()
 	}
 
 	return (
@@ -87,11 +86,9 @@ const Drawer = createDrawerNavigator()
 
 export default function HomeWithDrawer() {
 	return (
-		<NavigationIndependentTree>
-			<Drawer.Navigator screenOptions={{ headerTintColor: 'white', headerStyle: { backgroundColor: '#2B1D62' } }} drawerContent={(props) => <CustomDrawerContent {...props} />}>
-				<Drawer.Screen name="Home" component={Home} options={{ headerTitle: '', drawerIcon: () => <Icon name="description" size={32} color="#FFFFFF" />, drawerLabel: 'Pesquisas' }} />
-			</Drawer.Navigator>
-		</NavigationIndependentTree>
+		<Drawer.Navigator screenOptions={{ headerTintColor: 'white', headerStyle: { backgroundColor: '#2B1D62' } }} drawerContent={(props) => <CustomDrawerContent {...props} />}>
+			<Drawer.Screen name="Home" component={Home} options={{ headerTitle: '', drawerIcon: () => <Icon name="description" size={32} color="#FFFFFF" />, drawerLabel: 'Pesquisas' }} />
+		</Drawer.Navigator>
 	)
 }
 
@@ -126,7 +123,6 @@ const styles = StyleSheet.create({
 		height: 1,
 		marginVertical: 10
 	},
-
 	drawerItemText: {
 		color: 'white'
 	}

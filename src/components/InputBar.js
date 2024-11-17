@@ -1,7 +1,8 @@
 import React, { useImperativeHandle, forwardRef } from 'react'
-import { Text, StyleSheet, TouchableOpacity, TextInput, View } from 'react-native'
+import { Text, StyleSheet, TouchableOpacity, TextInput, Image, View } from 'react-native'
 import { useState } from 'react'
 import Icon from 'react-native-vector-icons/MaterialIcons'
+import * as ImagePicker from 'expo-image-picker'
 
 export default forwardRef(function InputBar({ title, placeholder, value, type, required, iconLeft, iconRight, onChangeText }, ref) {
 	useImperativeHandle(ref, () => ({
@@ -11,13 +12,16 @@ export default forwardRef(function InputBar({ title, placeholder, value, type, r
 	}))
 
 	const secureTextEntry = type == 'password'
-	const keyboardType = type == 'email' ? 'email-address' : 'default'
+	const keyboardType = type == 'email' ? 'email-address' : type == 'date' ? 'numeric' : 'default'
+	if (type == 'date') iconRight = 'calendar-month'
 
 	const [errorMessage, setErrorMessage] = useState('')
 
 	function validateAndEmitValue(value) {
-		if (value) value = String(value).trim()
+		if (value) value = String(value)
 		onChangeText(value)
+
+		value = value.trim()
 
 		if (required && (value == '' || value == undefined)) {
 			setErrorMessage('Esse campo é obrigatório')
@@ -29,17 +33,46 @@ export default forwardRef(function InputBar({ title, placeholder, value, type, r
 			else setErrorMessage('')
 		}
 
+		if (value && type == 'date') {
+			if (value.length == 2) value
+		}
+
 		return errorMessage ? false : true
+	}
+
+	async function selectFile() {
+		let result
+		try {
+			result = await ImagePicker.launchCameraAsync({
+				mediaType: 'photo',
+				base64: true,
+				maxHeight: 200,
+				maxWidth: 200
+			})
+		} catch (error) {
+			console.log('Erro ao selecionar imagem da galeria: ', error)
+			return
+		}
+		if (result.didCancel) return
+		onChangeText(result.assets[0].uri)
 	}
 
 	return (
 		<View style={styles.conteiner}>
 			{title && <Text style={styles.title}>{title}</Text>}
-			<View style={styles.input}>
-				{iconLeft && <Icon style={styles.icons} name={iconLeft} size={20} color="gray" />}
-				<TextInput style={styles.textinput} placeholder={placeholder || ''} value={value} onChangeText={validateAndEmitValue} secureTextEntry={secureTextEntry} keyboardType={keyboardType} autoCapitalize="none" />
-				{iconRight && <Icon style={styles.icons} name={iconRight} size={20} color="gray" />}
-			</View>
+
+			{type == 'image' ? (
+				<TouchableOpacity style={styles.imageConteiner} onPress={selectFile}>
+					<View style={styles.cImageInput}>{value ? <Image style={styles.image} label="Imagem" source={{ uri: value }} /> : <Text style={styles.txt}>Galeria de imagens</Text>}</View>
+				</TouchableOpacity>
+			) : (
+				<View style={styles.input}>
+					{iconLeft && <Icon style={styles.icons} name={iconLeft} size={20} color="gray" />}
+					<TextInput style={styles.textinput} placeholder={placeholder || ''} value={value} onChangeText={validateAndEmitValue} secureTextEntry={secureTextEntry} keyboardType={keyboardType} autoCapitalize="none" />
+					{iconRight && <Icon style={styles.icons} name={iconRight} size={20} color="gray" />}
+				</View>
+			)}
+
 			{errorMessage && <Text style={styles.error}>{errorMessage}</Text>}
 		</View>
 	)
@@ -73,5 +106,16 @@ const styles = StyleSheet.create({
 	error: {
 		color: '#FD7979',
 		width: '100%'
+	},
+	imageConteiner: {
+		flexDirection: 'row',
+		backgroundColor: '#FFFFFF',
+		justifyContent: 'center',
+		width: 250,
+		height: 250
+	},
+	image: {
+		width: 250,
+		height: 250
 	}
 })

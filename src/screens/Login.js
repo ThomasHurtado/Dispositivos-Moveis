@@ -1,4 +1,4 @@
-import { StyleSheet, Text, ScrollView, SafeAreaView } from 'react-native'
+import { StyleSheet, Text, ScrollView } from 'react-native'
 import InputBar from '../components/InputBar'
 import Button from '../components/Button'
 import { useState, useRef } from 'react'
@@ -26,7 +26,7 @@ export default function Login() {
 		navegation.navigate('Home')
 	}
 	function register() {
-		navegation.navigate('Register')
+		navegation.navigate('CreateResearch')
 	}
 	function forgotPassword() {
 		navegation.navigate('Recover')

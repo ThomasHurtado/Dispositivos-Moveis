@@ -4,7 +4,7 @@ export default function CardResearch({ image, title, date, onPress }) {
 	return (
 		<View style={styles.conteiner}>
 			<TouchableOpacity style={styles.card} onPress={onPress}>
-				<Image style={styles.image} source={{ uri: image }} />
+				{image && <Image style={styles.image} source={{ uri: image }} />}
 				<View style={styles.texts}>
 					<Text style={styles.title}>{title}</Text>
 					<Text style={styles.date}>{date}</Text>
