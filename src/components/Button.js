@@ -3,9 +3,12 @@ import { useState } from 'react'
 
 export default function Button({ title, color, size, validator, onPress }) {
 	const styles = StyleSheet.create({
-		container: {
+		conteiner: {
+			width: '100%'
+		},
+		button: {
 			backgroundColor: color == 'green' ? '#37BD6D' : color == 'blue' ? '#419ED7' : '#B5C7D1',
-			width: 300,
+			width: '100%',
 			height: size == 'sm' ? 25 : 35,
 			alignItems: 'center',
 			justifyContent: 'center',
@@ -33,9 +36,9 @@ export default function Button({ title, color, size, validator, onPress }) {
 	}
 
 	return (
-		<View>
+		<View style={styles.conteiner}>
 			{errorMessage && <Text style={styles.error}>{errorMessage}</Text>}
-			<TouchableOpacity style={styles.container} onPress={validateAndEmitEvent}>
+			<TouchableOpacity style={styles.button} onPress={validateAndEmitEvent}>
 				<Text style={styles.title}>{title}</Text>
 			</TouchableOpacity>
 		</View>

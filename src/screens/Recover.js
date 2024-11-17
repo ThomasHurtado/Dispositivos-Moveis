@@ -2,17 +2,22 @@ import { StyleSheet, Text, ScrollView } from 'react-native'
 import InputBar from '../components/InputBar'
 import Button from '../components/Button'
 import { useState, useRef } from 'react'
+import { useNavigation } from '@react-navigation/native'
 
 export default function Recover() {
+	navegation = useNavigation()
+
 	const [email, setEmail] = useState('')
 	const emailRef = useRef()
 
 	function dataValidator() {
 		const emailValid = emailRef.current.validate()
-		if (!emailValid) return
+		return emailValid
 	}
 
-	function recover() {}
+	function recover() {
+		navegation.navigate('Home')
+	}
 
 	return (
 		<ScrollView contentContainerStyle={styles.container}>
@@ -28,11 +33,7 @@ const styles = StyleSheet.create({
 		backgroundColor: '#3C2D7E',
 		alignItems: 'center',
 		paddingVertical: 16,
+		paddingHorizontal: 128,
 		flexGrow: 1
-	},
-	error: {
-		color: '#FD7979',
-		width: 300,
-		marginBottom: 30
 	}
 })

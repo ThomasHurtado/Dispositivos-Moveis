@@ -3,11 +3,10 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
 import * as ScreenOrientation from 'expo-screen-orientation'
 
-import { StatusBar } from 'expo-status-bar'
-
 import Login from './src/screens/Login'
 import Register from './src/screens/Register'
 import Recover from './src/screens/Recover'
+import Home from './src/screens/Home'
 
 ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.LANDSCAPE)
 
@@ -35,6 +34,12 @@ const RootStack = createNativeStackNavigator({
 			screen: Recover,
 			options: {
 				headerTitle: 'Recuperação de Senha'
+			}
+		},
+		Home: {
+			screen: Home,
+			options: {
+				headerShown: false
 			}
 		}
 	}

@@ -2,8 +2,11 @@ import { StyleSheet, Text, ScrollView } from 'react-native'
 import InputBar from '../components/InputBar'
 import Button from '../components/Button'
 import { useState, useRef } from 'react'
+import { useNavigation } from '@react-navigation/native'
 
 export default function Register() {
+	navegation = useNavigation()
+
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
 	const [cpassword, setCpassword] = useState('')
@@ -22,7 +25,9 @@ export default function Register() {
 		return 'O campo repetir senha difere da senha'
 	}
 
-	function register() {}
+	function register() {
+		navegation.navigate('Home')
+	}
 
 	return (
 		<ScrollView contentContainerStyle={styles.container}>
@@ -39,12 +44,7 @@ const styles = StyleSheet.create({
 		backgroundColor: '#3C2D7E',
 		alignItems: 'center',
 		paddingVertical: 16,
+		paddingHorizontal: 128,
 		flexGrow: 1
-	},
-	error: {
-		color: '#FD7979',
-		width: 300,
-		marginBottom: 30,
-		textAlign: 'center'
 	}
 })

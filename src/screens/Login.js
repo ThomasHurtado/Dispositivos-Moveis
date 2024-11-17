@@ -23,7 +23,7 @@ export default function Login() {
 	}
 
 	function login() {
-		navegation.navigate('')
+		navegation.navigate('Home')
 	}
 	function register() {
 		navegation.navigate('Register')
@@ -52,6 +52,7 @@ const styles = StyleSheet.create({
 		backgroundColor: '#3C2D7E',
 		alignItems: 'center',
 		paddingVertical: 16,
+		paddingHorizontal: 128,
 		flexGrow: 1
 	},
 	title: {

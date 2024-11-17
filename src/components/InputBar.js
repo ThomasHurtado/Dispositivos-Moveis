@@ -1,8 +1,9 @@
 import React, { useImperativeHandle, forwardRef } from 'react'
 import { Text, StyleSheet, TouchableOpacity, TextInput, View } from 'react-native'
 import { useState } from 'react'
+import Icon from 'react-native-vector-icons/MaterialIcons'
 
-export default forwardRef(function InputBar({ title, value, type, required, onChangeText }, ref) {
+export default forwardRef(function InputBar({ title, placeholder, value, type, required, iconLeft, iconRight, onChangeText }, ref) {
 	useImperativeHandle(ref, () => ({
 		validate: () => {
 			return validateAndEmitValue(value)
@@ -33,8 +34,12 @@ export default forwardRef(function InputBar({ title, value, type, required, onCh
 
 	return (
 		<View style={styles.conteiner}>
-			<Text style={styles.title}>{title}</Text>
-			<TextInput style={styles.textinput} value={value} onChangeText={validateAndEmitValue} secureTextEntry={secureTextEntry} keyboardType={keyboardType} autoCapitalize="none" />
+			{title && <Text style={styles.title}>{title}</Text>}
+			<View style={styles.input}>
+				{iconLeft && <Icon style={styles.icons} name={iconLeft} size={20} color="gray" />}
+				<TextInput style={styles.textinput} placeholder={placeholder || ''} value={value} onChangeText={validateAndEmitValue} secureTextEntry={secureTextEntry} keyboardType={keyboardType} autoCapitalize="none" />
+				{iconRight && <Icon style={styles.icons} name={iconRight} size={20} color="gray" />}
+			</View>
 			{errorMessage && <Text style={styles.error}>{errorMessage}</Text>}
 		</View>
 	)
@@ -48,14 +53,25 @@ const styles = StyleSheet.create({
 		fontSize: 20,
 		color: '#FFFFFF'
 	},
-	textinput: {
+	input: {
 		backgroundColor: '#FFFFFF',
-		width: 300,
+		width: '100%',
+		flexDirection: 'row',
+		alignItems: 'center',
+		justifyContent: 'space-between'
+	},
+	icons: {
+		paddingHorizontal: 10,
+		width: 40,
+		textAlign: 'center'
+	},
+	textinput: {
 		fontSize: 13,
+		flex: 1,
 		color: '#3F92C5'
 	},
 	error: {
 		color: '#FD7979',
-		width: 300
+		width: '100%'
 	}
 })
