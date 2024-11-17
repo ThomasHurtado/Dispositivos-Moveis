@@ -1,69 +1,54 @@
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import InputBar from '../components/InputBar';
-import SubmitButton from '../components/SubmitButton';
-import { useState } from 'react';
+import { StyleSheet, Text, ScrollView, SafeAreaView } from 'react-native'
+import InputBar from '../components/InputBar'
+import Button from '../components/Button'
+import { useState } from 'react'
+import { useNavigation } from '@react-navigation/native'
 
 export default function Login() {
+	navegation = useNavigation()
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  
-  return (
-    <View style={styles.container}>
-      <Text style={styles.title}> Satisfying.you EMOJI</Text>
-      <InputBar 
-        title="E-mail"
-        value={email}
-        onChangeText={setEmail} 
-      />
-      <InputBar 
-        title="Senha"
-        value={password}
-        onChangeText={setPassword} 
-        secureTextEntry 
-      />
-      <Text style={styles.error}>E-mail e/ou senha inválidos.</Text>
-      <SubmitButton title ="ENTRAR"/>
-      <TouchableOpacity style={styles.createButton}>
-        <Text>Criar minha conta</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.forgotButton}>
-        <Text>Esqueci minha senha</Text>
-      </TouchableOpacity>
-    </View>
-  );
+	const [email, setEmail] = useState('')
+	const [password, setPassword] = useState('')
+
+	function dataValidator() {
+		if (email == 'admin@admin.com' && password == 'admin') return true
+		return 'Email ou senha incorretos'
+	}
+
+	function login() {
+		navegation.navigate('')
+	}
+	function register() {
+		navegation.navigate('Register')
+	}
+	function forgotPassword() {
+		navegation.navigate('')
+	}
+
+	return (
+		<ScrollView contentContainerStyle={styles.container}>
+			<Text style={styles.title}> Satisfying.you EMOJI</Text>
+
+			<InputBar title="E-mail" value={email} onChangeText={setEmail} type="email" />
+			<InputBar title="Senha" value={password} onChangeText={setPassword} type="password" />
+
+			<Button style={{ marginBottom: 15 }} title="ENTRAR" color="green" size="lg" validator={dataValidator} onPress={login} />
+
+			<Button title="Criar minha conta" color="blue" size="sm" onPress={register} />
+			<Button title="Esqueci minha senha" size="sm" onPress={forgotPassword} />
+		</ScrollView>
+	)
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#3C2D7E',
-    alignItems: 'center',
-  },
-  title:{
-    fontSize: 32,
-    color: '#FFFFFF'
-  },
-  error: {
-    color: "#FD7979",
-    width: 300,
-    paddingBottom: 30,
-  },
-  createButton: {
-    backgroundColor: '#419ED7',
-    width: 300,
-    height:25,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginTop: 30,
-    marginBottom: 10,
-  },
-  forgotButton: {
-    backgroundColor: '#B5C7D1',
-    width: 300,
-    height: 25,
-    alignItems: 'center',
-    justifyContent: 'center',
-  }
-
-});
+	container: {
+		backgroundColor: '#3C2D7E',
+		alignItems: 'center',
+		paddingVertical: 16
+	},
+	title: {
+		fontSize: 32,
+		color: '#FFFFFF',
+		marginBottom: 20
+	}
+})
