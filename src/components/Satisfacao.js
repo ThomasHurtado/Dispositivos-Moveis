@@ -15,7 +15,6 @@ const styles = StyleSheet.create({
 	container: {
 		flexDirection: 'column',
 		alignItems: 'center',
-		marginBottom: 10,
 		margin: 20
 	},
 	text: {

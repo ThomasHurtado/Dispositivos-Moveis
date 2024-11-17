@@ -1,6 +1,8 @@
 import { StyleSheet, Text, ScrollView, SafeAreaView } from 'react-native'
 export default function Thanks() {
-	//navegation = useNavigation()
+	setTimeout(() => {
+		navegation.navigate('Home')
+	}, 3000)
 
 	return (
 		<ScrollView contentContainerStyle={styles.container}>
@@ -15,7 +17,7 @@ const styles = StyleSheet.create({
 		backgroundColor: '#3C2D7E',
 		alignItems: 'center',
 		justifyContent: 'center',
-		flex: 1
+		flexGrow: 1
 	},
 	title: {
 		fontSize: 32,
