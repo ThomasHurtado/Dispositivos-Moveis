@@ -44,8 +44,9 @@ function Home(props) {
 		setSearch(value)
 	}
 
-	function goToReseach() {}
-
+	function goToReseach() {
+		props.navigation.navigate('Actions')
+	}
 	function newResearch() {
 		props.navigation.navigate('CreateResearch')
 	}
@@ -104,7 +105,7 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		marginVertical: 18
 	},
-
+ 
 	drawerConteiner: {
 		backgroundColor: '#2B1F5C',
 		paddingVertical: 16,

@@ -8,6 +8,10 @@ import Register from './src/screens/Register'
 import Recover from './src/screens/Recover'
 import Home from './src/screens/Home'
 import CreateResearch from './src/screens/CreateResearch'
+import Coleta from './src/screens/Coleta'
+import Report from './src/screens/Report'
+import Actions from './src/screens/Actions'
+import Thanks from './src/screens/Thanks'
 
 ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.LANDSCAPE)
 
@@ -47,6 +51,30 @@ const RootStack = createNativeStackNavigator({
 			screen: CreateResearch,
 			options: {
 				headerTitle: 'Nova Pesquisa'
+			}
+		},
+		Actions: {
+			screen: Actions,
+			options: {
+				headerTitle: 'Nova Pesquisa'
+			}
+		},
+		Coleta: {
+			screen: Coleta,
+			options: {
+				headerTitle: 'Coletar Dados'
+			}
+		},
+		Report: {
+			screen: Report,
+			options: {
+				headerTitle: 'Relatório'
+			}
+		},
+		Thanks: {
+			screen: Thanks,
+			options: {
+				headerTitle: 'Relatório'
 			}
 		}
 	}

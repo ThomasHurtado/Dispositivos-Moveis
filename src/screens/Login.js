@@ -26,7 +26,7 @@ export default function Login() {
 		navegation.navigate('Home')
 	}
 	function register() {
-		navegation.navigate('CreateResearch')
+		navegation.navigate('Register')
 	}
 	function forgotPassword() {
 		navegation.navigate('Recover')
