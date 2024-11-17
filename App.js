@@ -7,6 +7,7 @@ import { StatusBar } from 'expo-status-bar'
 
 import Login from './src/screens/Login'
 import Register from './src/screens/Register'
+import Recover from './src/screens/Recover'
 
 ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.LANDSCAPE)
 
@@ -28,6 +29,12 @@ const RootStack = createNativeStackNavigator({
 			screen: Register,
 			options: {
 				headerTitle: 'Nova Conta'
+			}
+		},
+		Recover: {
+			screen: Recover,
+			options: {
+				headerTitle: 'Recuperação de Senha'
 			}
 		}
 	}
