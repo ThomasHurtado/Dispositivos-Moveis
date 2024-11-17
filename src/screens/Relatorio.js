@@ -1,8 +1,7 @@
 import { StyleSheet, Text, ScrollView, Image, View } from 'react-native';
 import { useState, useRef } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import Icon from 'react-native-vector-icons/MaterialIcons'; // Certifique-se de importar corretamente
-import LegendaRelatorio from '../components/LegendaRelatorio'; // Importação correta do componente
+import LegendaRelatorio from '../components/LegendaRelatorio'; 
 
 export default function Agradecimento() {
   return (
