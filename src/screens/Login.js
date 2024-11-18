@@ -58,6 +58,7 @@ const styles = StyleSheet.create({
 	title: {
 		fontSize: 32,
 		color: '#FFFFFF',
-		marginBottom: 20
+		marginBottom: 20,
+		fontFamily: 'AveriaLibre-italic'
 	}
 })
