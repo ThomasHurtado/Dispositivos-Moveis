@@ -44,8 +44,8 @@ function Home(props) {
 		setSearch(value)
 	}
 
-	function goToReseach() {
-		props.navigation.navigate('Actions')
+	function goToReseach(title) {
+		props.navigation.navigate('Actions', { title })
 	}
 	function newResearch() {
 		props.navigation.navigate('CreateResearch')
@@ -57,7 +57,7 @@ function Home(props) {
 
 			<ScrollView horizontal style={styles.cards}>
 				{filteredReseach.map(({ title, image, date }) => (
-					<CardResearch key={title} title={title} image={image} date={date} onPress={goToReseach} />
+					<CardResearch key={title} title={title} image={image} date={date} onPress={() => goToReseach(title)} />
 				))}
 			</ScrollView>
 

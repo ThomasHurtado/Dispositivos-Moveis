@@ -1,7 +1,9 @@
-import { StyleSheet, View, ScrollView } from 'react-native'
+import { StyleSheet, View, Text } from 'react-native'
 import CardActions from '../components/CardActions'
 
-export default function Actions() {
+export default function Actions({ route }) {
+	const { title } = route.params
+
 	function edit() {
 		navegation.navigate('CreateResearch')
 	}
@@ -15,6 +17,7 @@ export default function Actions() {
 	return (
 		<View style={styles.container}>
 			<View style={styles.cards}>
+				<Text>{title || ''}</Text>
 				<CardActions icone="description" title="Modificar" onPress={edit} />
 				<CardActions icone="devices" title="Coletar dados" onPress={coleta} />
 				<CardActions icone="donut-large" title="Relatório" onPress={report} />

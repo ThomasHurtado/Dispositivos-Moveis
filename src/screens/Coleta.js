@@ -1,13 +1,18 @@
-import { StyleSheet, Text, ScrollView, View } from 'react-native'
+import { StyleSheet, Text, ScrollView, View, TouchableOpacity } from 'react-native'
 import Satisfacao from '../components/Satisfacao'
 
 export default function Coleta(props) {
 	function goToThanks() {
 		navegation.navigate('Thanks')
 	}
+	function goBack() {
+		navegation.goBack()
+	}
 	return (
 		<ScrollView contentContainerStyle={styles.container}>
 			<Text style={styles.title}>O que você achou do carnaval 2024?</Text>
+
+			<TouchableOpacity style={styles.hideButton} onPress={goBack}></TouchableOpacity>
 
 			<View style={styles.row}>
 				<Satisfacao style={styles.satisfacao} icon="face-frown" color="#D71616" texto="Péssimo" onPress={goToThanks} />
@@ -24,7 +29,8 @@ const styles = StyleSheet.create({
 	container: {
 		backgroundColor: '#3C2D7E',
 		flexGrow: 1,
-		paddingVertical: 20
+		alignItems: 'center',
+		justifyContent: 'center'
 	},
 	title: {
 		fontSize: 32,
@@ -36,5 +42,11 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		justifyContent: 'center',
 		alignItems: 'center'
+	},
+	hideButton: {
+		padding: 20,
+		position: 'absolute',
+		top: 20,
+		right: 20
 	}
 })
