@@ -1,23 +1,32 @@
 import { StyleSheet, View, Text } from 'react-native'
 import CardActions from '../components/CardActions'
+import { useLayoutEffect } from 'react'
+import { useNavigation } from '@react-navigation/native'
 
 export default function Actions({ route }) {
 	const { title } = route.params
 
+	const navigation = useNavigation()
+
+	useLayoutEffect(() => {
+		navigation.setOptions({
+			headerTitle: title || 'Modificar Pesquisa'
+		})
+	}, [navigation, title])
+
 	function edit() {
-		navegation.navigate('Modificar')
+		navigation.navigate('Modificar', route.params)
 	}
 	function coleta() {
-		navegation.navigate('Coleta')
+		navigation.navigate('Coleta', route.params)
 	}
 	function report() {
-		navegation.navigate('Report')
+		navigation.navigate('Report', route.params)
 	}
 
 	return (
 		<View style={styles.container}>
 			<View style={styles.cards}>
-				<Text>{title || ''}</Text>
 				<CardActions icone="description" title="Modificar" onPress={edit} />
 				<CardActions icone="devices" title="Coletar dados" onPress={coleta} />
 				<CardActions icone="donut-large" title="Relatório" onPress={report} />

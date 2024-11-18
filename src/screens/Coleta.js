@@ -1,16 +1,17 @@
 import { StyleSheet, Text, ScrollView, View, TouchableOpacity } from 'react-native'
 import Satisfacao from '../components/Satisfacao'
 
-export default function Coleta(props) {
+export default function Coleta({ route }) {
+	const { title } = route.params
 	function goToThanks() {
-		navegation.navigate('Thanks')
+		navegation.navigate('Thanks', route.params)
 	}
 	function goBack() {
-		navegation.goBack()
+		navegation.navigate('Home')
 	}
 	return (
 		<ScrollView contentContainerStyle={styles.container}>
-			<Text style={styles.title}>O que você achou do carnaval 2024?</Text>
+			<Text style={styles.title}>O que você achou do {title}?</Text>
 
 			<TouchableOpacity style={styles.hideButton} onPress={goBack}></TouchableOpacity>
 

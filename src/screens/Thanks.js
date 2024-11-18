@@ -1,7 +1,7 @@
 import { StyleSheet, Text, ScrollView, SafeAreaView } from 'react-native'
-export default function Thanks() {
+export default function Thanks({ route }) {
 	setTimeout(() => {
-		navegation.navigate('Coleta')
+		navegation.navigate('Coleta', route.params)
 	}, 3000)
 
 	return (
