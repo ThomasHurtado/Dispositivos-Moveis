@@ -31,8 +31,7 @@
     "react-navigation": "^5.0.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.20.0",
-    "@react-native-community/cli": "latest"
+    "@babel/core": "^7.20.0"
   },
   "private": true
 }
