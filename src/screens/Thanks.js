@@ -7,7 +7,7 @@ export default function Thanks() {
 	return (
 		<ScrollView contentContainerStyle={styles.container}>
 			<Text style={styles.title}> Obrigados Participar da pesquisa!</Text>
-			<Text style={styles.title}> Aguardamos voce no proximo ano</Text>
+			<Text style={styles.title}> Aguardamos você no proximo ano!</Text>
 		</ScrollView>
 	)
 }

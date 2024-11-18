@@ -5,7 +5,7 @@ export default function Actions({ route }) {
 	const { title } = route.params
 
 	function edit() {
-		navegation.navigate('CreateResearch')
+		navegation.navigate('Modificar')
 	}
 	function coleta() {
 		navegation.navigate('Coleta')
