@@ -28,9 +28,9 @@ export default function Login() {
 
 	return (
 		<ScrollView contentContainerStyle={styles.container}>
-			<InputBar ref={titleRef} title="E-mail" value={title} type="email" required={true} onChangeText={setTitle} />
-			<InputBar ref={dateRef} title="Senha" value={date} type="password" required={true} onChangeText={setDate} />
-			<InputBar ref={imageRef} title="Repetir senha" value={image} type="image" required={true} onChangeText={setImage} />
+			<InputBar ref={titleRef} title="Nome" value={title} type="text" required={true} onChangeText={setTitle} />
+			<InputBar ref={dateRef} title="Data" value={date} type="date" required={true} onChangeText={setDate} />
+			<InputBar ref={imageRef} title="Imagem" value={image} type="image" required={true} onChangeText={setImage} />
 			<Button title="CADASTRAR" color="green" size="lg" validator={dataValidator} onPress={login} />
 		</ScrollView>
 	)

@@ -3,7 +3,7 @@ import CardActions from '../components/CardActions'
 
 export default function Actions() {
 	function edit() {
-		navegation.navigate('CreateResearch')
+		navegation.navigate('Modificar')
 	}
 	function coleta() {
 		navegation.navigate('Coleta')
