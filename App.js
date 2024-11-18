@@ -81,7 +81,7 @@ const RootStack = createNativeStackNavigator({
 		Thanks: {
 			screen: Thanks,
 			options: {
-				headerTitle: 'Relatório'
+				headerShown: false
 			}
 		}
 	}

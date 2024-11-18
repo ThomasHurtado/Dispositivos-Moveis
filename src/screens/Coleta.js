@@ -23,10 +23,8 @@ export default function Coleta(props) {
 const styles = StyleSheet.create({
 	container: {
 		backgroundColor: '#3C2D7E',
-		alignItems: 'center',
-		justifyContent: 'center',
 		flexGrow: 1,
-		paddingVertical: 10
+		paddingVertical: 20
 	},
 	title: {
 		fontSize: 32,
@@ -37,8 +35,6 @@ const styles = StyleSheet.create({
 	row: {
 		flexDirection: 'row',
 		justifyContent: 'center',
-		alignItems: 'center',
-		flexWrap: 'wrap',
-		padding: 60
+		alignItems: 'center'
 	}
 })
