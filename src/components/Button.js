@@ -7,7 +7,7 @@ export default function Button({ title, color, size, validator, onPress }) {
 			width: '100%'
 		},
 		button: {
-			backgroundColor: color == 'green' ? '#37BD6D' : color == 'blue' ? '#419ED7' : '#B5C7D1',
+			backgroundColor: color == 'green' ? '#37BD6D' : color == 'blue' ? '#419ED7' : color == 'red' ? '#FF8383' : '#B5C7D1',
 			width: '100%',
 			height: size == 'sm' ? 25 : 35,
 			alignItems: 'center',
