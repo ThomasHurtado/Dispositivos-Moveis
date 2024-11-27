@@ -1,6 +1,7 @@
 import React, { useImperativeHandle, forwardRef } from 'react'
 import { Text, StyleSheet, TouchableOpacity, TextInput, Image, View } from 'react-native'
 import { useState } from 'react'
+import { useFonts } from 'expo-font'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import * as ImagePicker from 'expo-image-picker'
 
@@ -10,6 +11,13 @@ export default forwardRef(function InputBar({ title, placeholder, value, type, r
 			return validateAndEmitValue(value)
 		}
 	}))
+
+	const [fontsLoaded] = useFonts({
+		AveriaLibre: require('../../assets/fonts/AveriaLibre-Regular.ttf')
+	})
+	if (!fontsLoaded) {
+		return null
+	}
 
 	const secureTextEntry = type == 'password'
 	const keyboardType = type == 'email' ? 'email-address' : type == 'date' ? 'numeric' : 'default'
@@ -84,7 +92,8 @@ const styles = StyleSheet.create({
 	},
 	title: {
 		fontSize: 20,
-		color: '#FFFFFF'
+		color: '#FFFFFF',
+		fontFamily: 'AveriaLibre'
 	},
 	input: {
 		backgroundColor: '#FFFFFF',
@@ -101,11 +110,13 @@ const styles = StyleSheet.create({
 	textinput: {
 		fontSize: 13,
 		flex: 1,
-		color: '#3F92C5'
+		color: '#3F92C5',
+		fontFamily: 'AveriaLibre'
 	},
 	error: {
 		color: '#FD7979',
-		width: '100%'
+		width: '100%',
+		fontFamily: 'AveriaLibre'
 	},
 	imageConteiner: {
 		flexDirection: 'row',

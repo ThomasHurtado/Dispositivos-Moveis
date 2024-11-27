@@ -21,6 +21,9 @@ const RootStack = createNativeStackNavigator({
 		headerTintColor: 'white',
 		headerStyle: {
 			backgroundColor: '#2B1D62'
+		},
+		headerTitleStyle: {
+			fontFamily: 'AveriaLibre'
 		}
 	},
 	screens: {

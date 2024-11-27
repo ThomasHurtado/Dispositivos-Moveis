@@ -17,7 +17,8 @@ export default function Button({ title, color, size, validator, onPress }) {
 		title: {
 			fontSize: size == 'sm' ? 16 : 20,
 			color: '#FFFFFF',
-			textAlign: 'center'
+			textAlign: 'center',
+			fontFamily: 'AveriaLibre'
 		},
 		error: {
 			color: '#FD7979',

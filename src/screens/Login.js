@@ -1,8 +1,9 @@
-import { StyleSheet, Text, ScrollView } from 'react-native'
+import { StyleSheet, Text, ScrollView, View } from 'react-native'
 import InputBar from '../components/InputBar'
 import Button from '../components/Button'
 import { useState, useRef } from 'react'
 import { useNavigation } from '@react-navigation/native'
+import Icon from 'react-native-vector-icons/FontAwesome6'
 
 export default function Login() {
 	navegation = useNavigation()
@@ -34,7 +35,10 @@ export default function Login() {
 
 	return (
 		<ScrollView contentContainerStyle={styles.container}>
-			<Text style={styles.title}> Satisfying.you EMOJI</Text>
+			<View style={styles.titleContainer}>
+				<Text style={styles.title}> Satisfying.you</Text>
+				<Icon name="face-grin-wide" size={50} color="#FFFFFF" />
+			</View>
 
 			<InputBar ref={emailRef} title="E-mail" value={email} type="email" required={true} onChangeText={setEmail} />
 			<InputBar ref={passwordRef} title="Senha" value={password} type="password" required={true} onChangeText={setPassword} />
@@ -55,10 +59,15 @@ const styles = StyleSheet.create({
 		paddingHorizontal: 128,
 		flexGrow: 1
 	},
+	titleContainer: {
+		display: 'flex',
+		flexDirection: 'row',
+		gap: 10
+	},
 	title: {
 		fontSize: 32,
 		color: '#FFFFFF',
 		marginBottom: 20,
-		fontFamily: 'AveriaLibre-italic'
+		fontFamily: 'AveriaLibre'
 	}
 })

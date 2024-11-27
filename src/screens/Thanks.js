@@ -23,6 +23,7 @@ const styles = StyleSheet.create({
 		fontSize: 32,
 		color: '#FFFFFF',
 		textAlign: 'center',
-		marginBottom: 20
+		marginBottom: 20,
+		fontFamily: 'AveriaLibre'
 	}
 })
