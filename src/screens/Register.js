@@ -1,50 +1,88 @@
-import { StyleSheet, Text, ScrollView } from 'react-native'
-import InputBar from '../components/InputBar'
-import Button from '../components/Button'
-import { useState, useRef } from 'react'
-import { useNavigation } from '@react-navigation/native'
+import { StyleSheet, Text, ScrollView } from "react-native";
+import InputBar from "../components/InputBar";
+import Button from "../components/Button";
+import { useState, useRef } from "react";
+import { useNavigation } from "@react-navigation/native";
+import { signUpEmail } from "../controller/authController";
 
 export default function Register() {
-	navegation = useNavigation()
+	navigation = useNavigation();
 
-	const [email, setEmail] = useState('')
-	const [password, setPassword] = useState('')
-	const [cpassword, setCpassword] = useState('')
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
+	const [cpassword, setCpassword] = useState("");
+	const [error, setError] = useState("");
 
-	const emailRef = useRef()
-	const passwordRef = useRef()
-	const cpasswordRef = useRef()
+	const emailRef = useRef();
+	const passwordRef = useRef();
+	const cpasswordRef = useRef();
 
 	const dataValidator = () => {
-		const emailValid = emailRef.current.validate()
-		const passwordValid = passwordRef.current.validate()
-		const cpasswordValid = cpasswordRef.current.validate()
-		if (!emailValid || !passwordValid || !cpasswordValid) return
+		setError("");
+		const emailValid = emailRef.current.validate();
+		const passwordValid = passwordRef.current.validate();
+		const cpasswordValid = cpasswordRef.current.validate();
+		if (!emailValid || !passwordValid || !cpasswordValid) return;
 
-		if (password == cpassword) return true
-		return 'O campo repetir senha difere da senha'
-	}
+		if (password != cpassword)
+			return "O campo senha e repetir senha devem ser iguais";
 
-	function register() {
-		navegation.navigate('Home')
+		return true;
+	};
+
+	async function register() {
+		try {
+			await signUpEmail(email, password);
+			navigation.navigate("Home");
+		} catch (error) {
+			setError(error);
+		}
 	}
 
 	return (
 		<ScrollView contentContainerStyle={styles.container}>
-			<InputBar ref={emailRef} title="E-mail" value={email} type="email" required={true} onChangeText={setEmail} />
-			<InputBar ref={passwordRef} title="Senha" value={password} type="password" required={true} onChangeText={setPassword} />
-			<InputBar ref={cpasswordRef} title="Repetir senha" value={cpassword} type="password" required={true} onChangeText={setCpassword} />
-			<Button title="CADASTRAR" color="green" size="lg" validator={dataValidator} onPress={register} />
+			<InputBar
+				ref={emailRef}
+				title="E-mail"
+				value={email}
+				type="email"
+				required={true}
+				onChangeText={setEmail}
+			/>
+			<InputBar
+				ref={passwordRef}
+				title="Senha"
+				value={password}
+				type="password"
+				required={true}
+				onChangeText={setPassword}
+			/>
+			<InputBar
+				ref={cpasswordRef}
+				title="Repetir senha"
+				value={cpassword}
+				type="password"
+				required={true}
+				onChangeText={setCpassword}
+			/>
+			<Button
+				title="CADASTRAR"
+				color="green"
+				size="lg"
+				validator={dataValidator}
+				onPress={register}
+				error={error}
+			/>
 		</ScrollView>
-	)
+	);
 }
 
 const styles = StyleSheet.create({
 	container: {
-		backgroundColor: '#3C2D7E',
-		alignItems: 'center',
+		backgroundColor: "#3C2D7E",
+		alignItems: "center",
 		paddingVertical: 16,
 		paddingHorizontal: 128,
-		flexGrow: 1
-	}
-})
+		flexGrow: 1,
+	},
+});
