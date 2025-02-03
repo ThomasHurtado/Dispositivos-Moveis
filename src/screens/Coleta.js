@@ -7,8 +7,10 @@ import {
 } from "react-native";
 import Satisfacao from "../components/Satisfacao";
 import { addVote } from "../controller/votingController";
+import { useNavigation } from "@react-navigation/native";
 
 export default function Coleta({ route }) {
+	navigation = useNavigation();
 	const { id, title } = route.params;
 
 	function registerVote(vote) {
