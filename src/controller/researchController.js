@@ -8,7 +8,7 @@ import {
 	getDoc,
 	deleteDoc,
 } from "firebase/firestore";
-import { createVoting } from "./votingController";
+import { createVoting, deleteVoting } from "./votingController";
 
 export const getResearches = async () => {
 	try {

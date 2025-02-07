@@ -4,14 +4,6 @@ import {
 	createUserWithEmailAndPassword,
 	signInWithEmailAndPassword,
 } from "firebase/auth";
-import {
-	doc,
-	setDoc,
-	getDoc,
-	collection,
-	getDocs,
-	updateDoc,
-} from "firebase/firestore";
 
 //Cadastrar Usuário
 export const signUpEmail = async (email, password) => {

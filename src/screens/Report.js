@@ -12,17 +12,17 @@ export default function Report({ route }) {
 	const [neutro, setNeutro] = useState(1);
 	const [ruim, setRuim] = useState(1);
 	const [pessimo, setPessimo] = useState(1);
-	const sliceColor = ["#25BC22", "#37BD6D", "#FFC632", "#FF360A", "#D71616"]
+	const sliceColor = ["#25BC22", "#37BD6D", "#FFC632", "#FF360A", "#D71616"];
 	useEffect(() => {
 		async function fetchData() {
 			try {
 				const data = await getVoting(id);
 
 				setExcelente(Number(data.excelente) || 0);
-            	setBom(Number(data.bom) || 0);
-            	setNeutro(Number(data.neutro) || 0);
-            	setRuim(Number(data.ruim) || 0);
-            	setPessimo(Number(data.pessimo) || 0);
+				setBom(Number(data.bom) || 0);
+				setNeutro(Number(data.neutro) || 0);
+				setRuim(Number(data.ruim) || 0);
+				setPessimo(Number(data.pessimo) || 0);
 			} catch (error) {
 				console.error("Erro ao buscar pesquisas:", error);
 			}
@@ -31,21 +31,26 @@ export default function Report({ route }) {
 		fetchData();
 	}, []);
 	const series = [
-		{value: excelente, color: '#25BC22'},
-		{value: bom, color: '#37BD6D'},
-		{value: neutro, color: '#FFC632'},
-		{value: ruim, color: '#FF360A'},
-		{value: pessimo, color: '#D71616'}
-	]
-		return (
+		{ value: excelente, color: "#25BC22" },
+		{ value: bom, color: "#37BD6D" },
+		{ value: neutro, color: "#FFC632" },
+		{ value: ruim, color: "#FF360A" },
+		{ value: pessimo, color: "#D71616" },
+	];
+	const soma = excelente + bom + neutro + ruim + pessimo;
+	return (
 		<ScrollView contentContainerStyle={styles.container}>
 			<View style={styles.row}>
 				<View>
-					<PieChart
-						widthAndHeight={300}
-						series={series}
-						sliceColor={sliceColor}
-					/>
+					{soma > 0 ? (
+						<PieChart
+							widthAndHeight={200}
+							series={series}
+							sliceColor={sliceColor}
+						/>
+					) : (
+						""
+					)}
 				</View>
 
 				<View style={styles.legendContainer}>
@@ -53,10 +58,7 @@ export default function Report({ route }) {
 						color="#25BC22"
 						texto={"Excelente - " + excelente}
 					/>
-					<LegendaRelatorio
-					 	color="#37BD6D"
-						texto={"Bom - " + bom} 
-					/>
+					<LegendaRelatorio color="#37BD6D" texto={"Bom - " + bom} />
 					<LegendaRelatorio
 						color="#FFC632"
 						texto={"Neutro - " + neutro}
@@ -79,14 +81,12 @@ const styles = StyleSheet.create({
 	container: {
 		backgroundColor: "#3C2D7E",
 		flex: 1,
-		justifyContent: "center",
-		alignItems: "center",
 	},
 	row: {
 		flexDirection: "row",
-		alignItems: "center",
 		justifyContent: "center",
 		marginBottom: 20,
+		marginTop: 40,
 		flexWrap: "wrap",
 	},
 	image: {
